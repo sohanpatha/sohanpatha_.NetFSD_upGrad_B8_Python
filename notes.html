@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Personal Notes</title>
+  <style>
+    body{
+      font-family: Arial;
+      text-align:center;
+      margin-top:40px;
+    }
+
+    textarea{
+      width:300px;
+      height:120px;
+      font-size:16px;
+    }
+  </style>
+</head>
+<body onload="loadNote()">
+<h2>Personal Notes</h2>
+<textarea id="note" placeholder="write here"></textarea>
+<br><br>
+<button onclick="saveNote()">Save Note</button>
+<button onclick="clearNote()">Clear Note</button>
+<h3 id="status"></h3>
+<script>
+  function loadNote(){
+    let savedNote = localStorage.getItem("dailyNote");
+    if(savedNote !== null){
+      document.getElementById("note").value = savedNote;
+      document.getElementById("status").innerHTML="Saved note loaded ✔";
+    }
+  }
+  function saveNote(){
+    let noteText = document.getElementById("note").value;
+    localStorage.setItem("dailyNote", noteText);
+    document.getElementById("status").innerHTML="Note Saved Successfully";
+  }
+  function clearNote(){
+    localStorage.removeItem("dailyNote");
+    document.getElementById("note").value="";
+    document.getElementById("status").innerHTML="Note Cleared";
+  }
+
+</script>
+
+</body>
+</html>
